@@ -46,11 +46,10 @@ const url = require("url");
 const envinfo = require("envinfo");
 
 const packageJson = require("./package.json");
-const _wpThemeVersion = packageJson.version;
-const _createReactAppVersion = _wpThemeVersion.split("-wp.")[0];
+const _createReactWpThemeVersion = packageJson.version;
+const _createReactAppVersion = _createReactWpThemeVersion.split("-wp.")[0];
+const _createReactWpThemeScriptsVersion = packageJson.createReactWpThemeScriptsVersion;
 
-// Check these!!!!
-const _reactScriptsWpThemeVersion = "3.2.0-wp.2";
 const _getScriptsPath = function() {
     return scriptsFromNpm();
 };
@@ -58,7 +57,7 @@ const _getScriptsPath = function() {
 const scriptsFromNpm = function() {
     //console.log("SCRIPTS FROM NPM");
     return {
-        path: `@devloco/react-scripts-wptheme@^${_reactScriptsWpThemeVersion}`,
+        path: `@devloco/react-scripts-wptheme@${_createReactWpThemeScriptsVersion}`,
         callback: function() {}
     };
 };
@@ -159,8 +158,8 @@ function printValidationResults(results) {
     }
 }
 
-console.log(program.name() + " version: " + chalk.magenta(_wpThemeVersion));
-console.log("@devloco/react-scripts-wptheme version: " + chalk.magenta(_reactScriptsWpThemeVersion));
+console.log(program.name() + " version: " + chalk.magenta(_createReactWpThemeVersion));
+console.log("@devloco/react-scripts-wptheme version: " + chalk.magenta(_createReactWpThemeScriptsVersion));
 console.log("create-react-app version: " + chalk.magenta(_createReactAppVersion));
 createApp(projectName, program.verbose, program.scriptsVersion, program.useNpm, program.usePnp, program.typescript);
 
